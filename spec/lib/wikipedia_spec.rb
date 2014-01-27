@@ -14,7 +14,12 @@ describe Wikipedia, ".find" do
   it "should return a Page given a URL" do
     page1 = Wikipedia.find('Getting_Things_Done')
     
+    puts page1.page_id.to_s
+    puts page1.wiki_url
+    
     page2 = Wikipedia.find('http://en.wikipedia.org/wiki/Getting_Things_Done')
     page1.title.should == page2.title
+    
   end
+  
 end

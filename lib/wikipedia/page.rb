@@ -21,6 +21,15 @@ module Wikipedia
     def redirect?
       content && content.match(/\#REDIRECT\s*\[\[(.*?)\]\]/i)
     end
+    
+    def page_id
+      page['pageid']
+    end
+    
+    def wiki_url
+     page_url = ":protocol://:domain/:path?curid=:page_id"
+     page_url.gsub(":protocol", Configuration[:protocol]).gsub(":domain", Configuration[:domain]).gsub(":path", "wiki").gsub(":page_id", page_id.to_s)
+    end
 
     def redirect_title
       if matches = redirect?
